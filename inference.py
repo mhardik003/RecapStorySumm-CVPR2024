@@ -87,6 +87,7 @@ def main(cfg: DictConfig):
         if os.path.isfile(cfg.split_type_file):
             split_info = OmegaConf.load(cfg.split_type_file)
             series_lst = ['24', 'prison-break'] if cfg['series'] == 'all' else cfg['series']
+            split_info['data_path'] = cfg['data_path']
             split_info = ParseEPS(split_info, series=series_lst).dct
             model_config = OmegaConf.merge(model_config, split_info)
         else:

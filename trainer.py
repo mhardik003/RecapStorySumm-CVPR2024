@@ -517,6 +517,7 @@ def main(config: DictConfig):
     if os.path.isfile(split_type_path):    
         episode_config = load_yaml(split_type_path)
         series_lst = ['24', 'prison-break'] if config['series'] == 'all' else config['series']
+        split_info['data_path'] = cfg['data_path']
         split_dict = ParseEPS(episode_config, series=series_lst).dct
         with open_dict(config):
             config.update(split_dict)
